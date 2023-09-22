@@ -5,8 +5,23 @@ const http = require('http');
 
 const fs = require('fs'); // object to read a file 
 
+const _ = require('lodash'); //here we are dealing with lodash library 
+
 const server = http.createServer((req,res)=>{
-    console.log(req.url, req.method);
+   // console.log(req.url, req.method);
+
+   //lodash usage using _
+   const num = _.random(0,20);
+   console.log(num);
+
+   const greet = _.once(()=>{
+
+    console.log('hello');
+    
+   })
+
+   greet();
+   greet();
 
     //set header content type we take 3 steps here
     //res.setHeader('content-Type','text/plain'); // step 1 here we set the rsponse header to plain text
@@ -24,7 +39,7 @@ const server = http.createServer((req,res)=>{
             res.statusCode = 200; 
             break;
         case '/about-me':
-            res.statusCode = 301;  // the requested page is changed and we need to redirect to the new url
+            res.statusCode = 301;  // the requested page address is changed and we need to redirect to the new url
             res.setHeader('Location','/about'); // set header with the new location
             res.end();
             break;
